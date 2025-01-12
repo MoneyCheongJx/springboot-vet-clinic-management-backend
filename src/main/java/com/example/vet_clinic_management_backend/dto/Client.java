@@ -1,11 +1,15 @@
 package com.example.vet_clinic_management_backend.dto;
 
+import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class Client {
-
+    @DocumentId
+    @Schema(hidden = true)
+    private String documentId;
+    
     @PropertyName("fullname")
     @Schema(description = "Full name of the client", example = "Wong Teck An")
     private String fullname;
@@ -43,6 +47,14 @@ public class Client {
     private String gender;
 
     public Client() {
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getFullname() {
