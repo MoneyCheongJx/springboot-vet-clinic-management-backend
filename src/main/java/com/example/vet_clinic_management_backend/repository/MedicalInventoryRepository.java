@@ -3,20 +3,37 @@ package com.example.vet_clinic_management_backend.repository;
 import com.example.vet_clinic_management_backend.dto.MedicalInventory;
 
 import com.google.api.core.ApiFuture;
-
+import com.google.api.core.ApiFutures;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 
 import com.google.firebase.cloud.FirestoreClient;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class MedicalInventoryRepository {
-    
-    public ApiFuture<QuerySnapshot> findAllMedicalInventories() {
-        return FirestoreClient.getFirestore().collection("medical_inventories").get();
+
+    @SuppressWarnings("null")
+    public ApiFuture<List<MedicalInventory>> findAllMedicalInventories() {
+        ApiFuture<QuerySnapshot> future = FirestoreClient.getFirestore().collection("medical_inventories").get();
+
+        return ApiFutures.transform(future, querySnapshot -> {
+            List<MedicalInventory> medicalInventories = new ArrayList<>();
+
+            for (DocumentSnapshot documentSnapshot : querySnapshot.getDocuments()) {
+                MedicalInventory medicalInventory = documentSnapshot.toObject(MedicalInventory.class);
+                medicalInventory.setDocumentId(documentSnapshot.getId());
+                medicalInventories.add(medicalInventory);
+            }
+
+            return medicalInventories;
+        });
     }
 
     public ApiFuture<DocumentSnapshot> findMedicalInventoryById(String documentId) {

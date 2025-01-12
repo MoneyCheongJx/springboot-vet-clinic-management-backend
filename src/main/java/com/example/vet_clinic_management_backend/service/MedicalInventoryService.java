@@ -1,6 +1,5 @@
 package com.example.vet_clinic_management_backend.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 
 @Service
@@ -24,24 +21,18 @@ public class MedicalInventoryService {
 
     public String getMedicalInventoryList() {
         try {
-            ApiFuture<QuerySnapshot> querySnapshotApiFuture = medicalInventoryRepository.findAllMedicalInventories();
-            List<QueryDocumentSnapshot> documents = querySnapshotApiFuture.get().getDocuments();
-
-            List<MedicalInventory> medicalInventoryList = new ArrayList<>();
-            for (QueryDocumentSnapshot document : documents) {
-                MedicalInventory medicalInventory = document.toObject(MedicalInventory.class);
-                medicalInventoryList.add(medicalInventory);
-            }
-
-            if (medicalInventoryList.isEmpty()) {
+            ApiFuture<List<MedicalInventory>> medicalInventoryFuture = medicalInventoryRepository.findAllMedicalInventories();
+            List<MedicalInventory> medicalInventoriesList = medicalInventoryFuture.get(); 
+    
+            if (medicalInventoriesList.isEmpty()) {
                 System.out.println("No medical inventories found in database.");
             } else {
-                System.out.println("Medical inventories retrieved from database: " + medicalInventoryList);
+                System.out.println("Medical inventories retrieved from database: " + medicalInventoriesList);
             }
-
+    
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(medicalInventoryList);
-
+            return objectMapper.writeValueAsString(medicalInventoriesList);
+    
         } catch (Exception e) {
             e.printStackTrace();
             return "Error retrieving medical inventories: " + e.getMessage();

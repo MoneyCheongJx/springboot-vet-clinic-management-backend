@@ -1,9 +1,14 @@
 package com.example.vet_clinic_management_backend.dto;
 
+import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class MedicalInventory {
+    @DocumentId
+    @Schema(hidden = true)
+    private String documentId;
+
     @PropertyName("name")
     @Schema(description = "Name of the medical item", example = "Antibiotic Syrup")
     private String name;
@@ -29,6 +34,14 @@ public class MedicalInventory {
     private String supplier;
 
     public MedicalInventory() {
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
     public String getName() {
