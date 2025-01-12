@@ -1,6 +1,5 @@
 package com.example.vet_clinic_management_backend.repository;
 
-import com.example.vet_clinic_management_backend.dto.Client;
 import com.example.vet_clinic_management_backend.dto.LabDiagnostic;
 
 import com.google.api.core.ApiFuture;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class LabDiagnosticRepository {
-    
+
     @SuppressWarnings("null")
     public ApiFuture<List<LabDiagnostic>> findAllLabDiagnostics() {
         ApiFuture<QuerySnapshot> future = FirestoreClient.getFirestore().collection("lab_diagnostics").get();
