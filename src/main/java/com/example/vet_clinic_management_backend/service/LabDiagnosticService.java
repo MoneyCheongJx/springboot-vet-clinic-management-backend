@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.vet_clinic_management_backend.dto.Client;
 import com.example.vet_clinic_management_backend.dto.LabDiagnostic;
 import com.example.vet_clinic_management_backend.repository.LabDiagnosticRepository;
 import com.google.api.core.ApiFuture;
@@ -24,28 +25,22 @@ public class LabDiagnosticService {
     private LabDiagnosticRepository labDiagnosticRepository;
 
     public String getLabDiagnosticList() {
-        try {
-            ApiFuture<QuerySnapshot> querySnapshotApiFuture = labDiagnosticRepository.findAllLabDiagnostics();
-            List<QueryDocumentSnapshot> documents = querySnapshotApiFuture.get().getDocuments();
-
-            List<LabDiagnostic> labDiagnosticsList = new ArrayList<>();
-            for (QueryDocumentSnapshot document : documents) {
-                LabDiagnostic labDiagnostic = document.toObject(LabDiagnostic.class);
-                labDiagnosticsList.add(labDiagnostic);
-            }
-
-            if (labDiagnosticsList.isEmpty()) {
-                System.out.println("No lab diagnotics found in database.");
+      try {
+            ApiFuture<List<LabDiagnostic>> labDiagnosticFuture = labDiagnosticRepository.findAllLabDiagnostics();
+            List<LabDiagnostic> labDiagnosticList = labDiagnosticFuture.get(); 
+    
+            if (labDiagnosticList.isEmpty()) {
+                System.out.println("No lab diagnostics found in database.");
             } else {
-                System.out.println("Lab diagnotics retrieved from database: " + labDiagnosticsList);
+                System.out.println("Lab diagnostics retrieved from database: " + labDiagnosticList);
             }
-
+    
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(labDiagnosticsList);
-
+            return objectMapper.writeValueAsString(labDiagnosticList);
+    
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error retrieving lab diagnotics: " + e.getMessage();
+            return "Error retrieving lab diagnostics: " + e.getMessage();
         }
     }
 

@@ -1,11 +1,15 @@
 package com.example.vet_clinic_management_backend.dto;
 
+import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class LabDiagnostic {
-  
+    @DocumentId
+    @Schema(hidden = true)
+    private String documentId;
+
     @PropertyName("owner_fullname")
     @Schema(description = "Full name of the pet's owner", example = "Wong Teck An")
     private String ownerFullname;
@@ -37,6 +41,9 @@ public class LabDiagnostic {
     @PropertyName("date")
     @Schema(description = "Date when the diagnostic test was performed", example = "2025-01-10")
     private String date;
+
+    public LabDiagnostic() {
+    }
 
     public String getOwnerFullname() {
         return ownerFullname;
@@ -100,6 +107,14 @@ public class LabDiagnostic {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getDocumentId() {
+        return documentId;
+    }
+
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 
 }
