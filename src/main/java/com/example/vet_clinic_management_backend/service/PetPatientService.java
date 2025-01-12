@@ -1,6 +1,5 @@
 package com.example.vet_clinic_management_backend.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QueryDocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
 import com.google.cloud.firestore.WriteResult;
 
 @Service
@@ -24,27 +21,21 @@ public class PetPatientService {
 
     public String getPetPatientsList() {
         try {
-            ApiFuture<QuerySnapshot> querySnapshotApiFuture = petPatientRepository.findAllPetPatients();
-            List<QueryDocumentSnapshot> documents = querySnapshotApiFuture.get().getDocuments();
-
-            List<PetPatient> petPatientList = new ArrayList<>();
-            for (QueryDocumentSnapshot document : documents) {
-                PetPatient petPatient = document.toObject(PetPatient.class);
-                petPatientList.add(petPatient);
-            }
-
-            if (petPatientList.isEmpty()) {
+            ApiFuture<List<PetPatient>> petPatientFuture = petPatientRepository.findAllPetPatients();
+            List<PetPatient> petPatientsList = petPatientFuture.get(); 
+    
+            if (petPatientsList.isEmpty()) {
                 System.out.println("No pet patients found in database.");
             } else {
-                System.out.println("Pet patients retrieved from database: " + petPatientList);
+                System.out.println("Pet patients retrieved from database: " + petPatientsList);
             }
-
+    
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.writeValueAsString(petPatientList);
-
+            return objectMapper.writeValueAsString(petPatientsList);
+    
         } catch (Exception e) {
             e.printStackTrace();
-            return "Error retrieving medical inventories: " + e.getMessage();
+            return "Error retrieving pet patients: " + e.getMessage();
         }
     }
 
