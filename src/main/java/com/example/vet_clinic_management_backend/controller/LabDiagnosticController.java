@@ -1,6 +1,7 @@
 package com.example.vet_clinic_management_backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Tag(name = "Lab Dianostic Module", description = "")
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/lab")
 public class LabDiagnosticController {
     private final LabDiagnosticService labDiagnosticService;
