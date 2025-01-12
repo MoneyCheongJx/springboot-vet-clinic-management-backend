@@ -1,10 +1,16 @@
 package com.example.vet_clinic_management_backend.dto;
 
+import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class Appointment {
+
+    @DocumentId
+    @Schema(hidden = true)
+    private String documentId;
+
     @PropertyName("owner_fullname")
     @Schema(description = "Full name of the pet's owner", example = "Wong Teck An")
     private String ownerFullname;
@@ -22,7 +28,7 @@ public class Appointment {
     private String date;
 
     @PropertyName("time")
-    @Schema(description = "Time of the appointment", example = "10:00 AM")
+    @Schema(description = "Time of the appointment", example = "10:00")
     private String time;
 
     @PropertyName("pet_name")
@@ -52,18 +58,6 @@ public class Appointment {
     @PropertyName("notes")
     @Schema(description = "Additional notes for the appointment", example = "Pet is due for vaccination")
     private String notes;
-
-    @PropertyName("created_at")
-    @Schema(description = "Timestamp when the appointment was created", example = "2025-01-10T15:30:00Z")
-    private String createdAt;
-
-    @PropertyName("updated_at")
-    @Schema(description = "Timestamp when the appointment was last updated", example = "2025-01-11T12:45:00Z")
-    private String updatedAt;
-
-    @PropertyName("status")
-    @Schema(description = "Current status of the appointment", example = "Confirmed")
-    private String status;
 
     public Appointment() {
     }
@@ -164,27 +158,11 @@ public class Appointment {
         this.notes = notes;
     }
 
-    public String getCreatedAt() {
-        return createdAt;
+    public String getDocumentId() {
+        return documentId;
     }
 
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
+    public void setDocumentId(String documentId) {
+        this.documentId = documentId;
     }
 }

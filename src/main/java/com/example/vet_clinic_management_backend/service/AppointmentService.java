@@ -25,24 +25,18 @@ public class AppointmentService {
 
     public String getAppointmentList() {
         try {
-            ApiFuture<QuerySnapshot> querySnapshotApiFuture = appointmentRepository.findAllAppointments();
-            List<QueryDocumentSnapshot> documents = querySnapshotApiFuture.get().getDocuments();
-
-            List<Appointment> appointmentList = new ArrayList<>();
-            for (QueryDocumentSnapshot document : documents) {
-                Appointment appointment = document.toObject(Appointment.class);
-                appointmentList.add(appointment);
-            }
-
+            ApiFuture<List<Appointment>> appointmentFuture = appointmentRepository.findAllAppointments();
+            List<Appointment> appointmentList = appointmentFuture.get(); 
+    
             if (appointmentList.isEmpty()) {
                 System.out.println("No appointments found in database.");
             } else {
                 System.out.println("Appointments retrieved from database: " + appointmentList);
             }
-
+    
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.writeValueAsString(appointmentList);
-
+    
         } catch (Exception e) {
             e.printStackTrace();
             return "Error retrieving appointments: " + e.getMessage();
