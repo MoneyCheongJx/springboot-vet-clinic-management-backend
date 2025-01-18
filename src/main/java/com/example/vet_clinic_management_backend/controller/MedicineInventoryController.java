@@ -35,18 +35,18 @@ public class MedicineInventoryController {
 
     @PostMapping("/create")
     public String createLabDiagnostic(@RequestBody MedicalInventory medicalInventory) {
-        return medicalInventoryService.create(medicalInventory);
+        return medicalInventoryService.createMedicalInventory(medicalInventory);
     }
 
     @PutMapping("/update")
     public String updateLabDiagnostic(
             @RequestParam("documentId") String documentId,
             @RequestBody MedicalInventory medicalInventory) {
-        return medicalInventoryService.update(documentId, medicalInventory);
+        return medicalInventoryService.updateMedicalInventory(documentId, medicalInventory);
     }
 
     @DeleteMapping("/delete")
     public String deleteLabDiagnostic(@RequestParam String documentId) {
-        return medicalInventoryService.delete(documentId);
+        return medicalInventoryService.deleteMedicalInventory(documentId);
     }
 }
