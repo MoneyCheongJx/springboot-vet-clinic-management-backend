@@ -36,18 +36,18 @@ public class AppointmentController {
 
     @PostMapping("/book")
     public String bookAppointment(@RequestBody Appointment appointment) {
-        return appointmentService.create(appointment);
+        return appointmentService.createAppointment(appointment);
     }
 
     @PutMapping("/update")
     public String updateAppointment(
             @RequestParam("documentId") String documentId,
             @RequestBody Appointment appointment) {
-        return appointmentService.update(documentId, appointment);
+        return appointmentService.updateAppointment(documentId, appointment);
     }
 
     @DeleteMapping("/delete")
     public String deleteAppointment(@RequestParam String documentId) {
-        return appointmentService.delete(documentId);
+        return appointmentService.deleteAppointment(documentId);
     }
 }
