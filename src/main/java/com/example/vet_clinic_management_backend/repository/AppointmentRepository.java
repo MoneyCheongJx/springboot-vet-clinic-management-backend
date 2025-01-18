@@ -1,6 +1,6 @@
 package com.example.vet_clinic_management_backend.repository;
 
-import com.example.vet_clinic_management_backend.dto.Appointment;
+import com.example.vet_clinic_management_backend.entity.Appointment;
 
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;

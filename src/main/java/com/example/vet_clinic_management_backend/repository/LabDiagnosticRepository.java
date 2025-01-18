@@ -1,6 +1,6 @@
 package com.example.vet_clinic_management_backend.repository;
 
-import com.example.vet_clinic_management_backend.dto.LabDiagnostic;
+import com.example.vet_clinic_management_backend.entity.LabDiagnostic;
 
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;

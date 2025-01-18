@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.vet_clinic_management_backend.dto.MedicalInventory;
+import com.example.vet_clinic_management_backend.entity.MedicalInventory;
 import com.example.vet_clinic_management_backend.service.MedicalInventoryService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;

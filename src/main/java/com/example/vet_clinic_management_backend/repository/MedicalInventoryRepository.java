@@ -1,6 +1,6 @@
 package com.example.vet_clinic_management_backend.repository;
 
-import com.example.vet_clinic_management_backend.dto.MedicalInventory;
+import com.example.vet_clinic_management_backend.entity.MedicalInventory;
 
 import com.google.api.core.ApiFuture;
 import com.google.api.core.ApiFutures;

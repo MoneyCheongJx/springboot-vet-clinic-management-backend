@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.vet_clinic_management_backend.dto.LabDiagnostic;
+import com.example.vet_clinic_management_backend.entity.LabDiagnostic;
 import com.example.vet_clinic_management_backend.service.LabDiagnosticService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;

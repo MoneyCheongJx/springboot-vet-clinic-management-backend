@@ -1,4 +1,4 @@
-package com.example.vet_clinic_management_backend.dto;
+package com.example.vet_clinic_management_backend.entity;
 
 import com.google.cloud.firestore.annotation.DocumentId;
 import com.google.cloud.firestore.annotation.PropertyName;

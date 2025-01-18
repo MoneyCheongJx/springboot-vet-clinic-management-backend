@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.vet_clinic_management_backend.dto.PetPatient;
+import com.example.vet_clinic_management_backend.entity.PetPatient;
 import com.example.vet_clinic_management_backend.repository.PetPatientRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.api.core.ApiFuture;
