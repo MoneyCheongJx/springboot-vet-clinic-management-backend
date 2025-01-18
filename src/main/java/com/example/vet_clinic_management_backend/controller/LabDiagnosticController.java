@@ -35,18 +35,18 @@ public class LabDiagnosticController {
 
     @PostMapping("/create")
     public String createLabDiagnostic(@RequestBody LabDiagnostic labDiagnostic) {
-        return labDiagnosticService.create(labDiagnostic);
+        return labDiagnosticService.createLabDiagnostic(labDiagnostic);
     }
 
     @PutMapping("/update")
     public String updateLabDiagnostic(
             @RequestParam("documentId") String documentId,
             @RequestBody LabDiagnostic labDiagnostic) {
-        return labDiagnosticService.update(documentId, labDiagnostic);
+        return labDiagnosticService.updateLabDiagnostic(documentId, labDiagnostic);
     }
 
     @DeleteMapping("/delete")
     public String deleteLabDiagnostic(@RequestParam String documentId) {
-        return labDiagnosticService.delete(documentId);
+        return labDiagnosticService.deleteLabDiagnostic(documentId);
     }
 }
