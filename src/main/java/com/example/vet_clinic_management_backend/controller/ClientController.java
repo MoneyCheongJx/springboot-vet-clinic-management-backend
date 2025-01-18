@@ -35,18 +35,18 @@ public class ClientController {
 
     @PostMapping("/create")
     public String createClient(@RequestBody Client client) {
-        return clientService.create(client);
+        return clientService.createClient(client);
     }
 
     @PutMapping("/update")
     public String updateClient(
             @RequestParam("documentId") String documentId,
             @RequestBody Client client) {
-        return clientService.update(documentId, client);
+        return clientService.updateClient(documentId, client);
     }
 
     @DeleteMapping("/delete")
     public String deleteClient(@RequestParam String documentId) {
-        return clientService.delete(documentId);
+        return clientService.deleteClient(documentId);
     }
 }
