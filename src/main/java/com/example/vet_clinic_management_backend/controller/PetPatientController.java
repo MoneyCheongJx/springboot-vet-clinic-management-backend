@@ -35,18 +35,18 @@ public class PetPatientController {
 
     @PostMapping("/create")
     public String createPetPatient(@RequestBody PetPatient petPatient) {
-        return petPatientService.create(petPatient);
+        return petPatientService.createPetPatient(petPatient);
     }
 
     @PutMapping("/update")
     public String updatePetPatient(
             @RequestParam("documentId") String documentId,
             @RequestBody PetPatient petPatient) {
-        return petPatientService.update(documentId, petPatient);
+        return petPatientService.updatePetPatient(documentId, petPatient);
     }
 
     @DeleteMapping("/delete")
     public String deletePetPatient(@RequestParam String documentId) {
-        return petPatientService.delete(documentId);
+        return petPatientService.deletePetPatient(documentId);
     }
 }
